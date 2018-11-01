@@ -61,17 +61,44 @@ void setup() {
 }
 
 void loop() {
-  char* intput = "{'message_type' : 1,'requests' : [{ 'type' : 12 , 'value' : 'abc'},{ 'type' : 15, 'value' : 'xyz'}]}";
-  DynamicJsonBuffer jsonBuffer;
-  JsonObject& root = jsonBuffer.parseObject(intput);
-  JsonArray& requests = root["requests"];
-  for (auto& request : requests) {
-     int type = request["type"];
-     const char* value = request["value"];
-     Serial.println(type);
-     Serial.println(value);
-     delay(1000);
+//  char* intput = "{'message_type' : 1,'requests' : [{ 'type' : 12 , 'value' : 'abc'},{ 'type' : 15, 'value' : 'xyz'}]}";
+//  DynamicJsonBuffer jsonBuffer;
+//  JsonObject& root = jsonBuffer.parseObject(intput);
+//  JsonArray& requests = root["requests"];
+//  for (auto& request : requests) {
+//     int type = request["type"];
+//     const char* value = request["value"];
+//     Serial.println(type);
+//     Serial.println(value);
+//     delay(1000);
+//
+//  }
 
+
+//  char json[] = "{'first':'hello','second':'world'}";
+//  DynamicJsonBuffer jsonBuffer;
+//  JsonObject& root = jsonBuffer.parseObject(json);
+//  
+//  // using C++11 syntax (preferred):
+//  for (auto kv : root) {
+//      Serial.println(kv.key);
+//      Serial.println(kv.value.as<char*>());
+//  }
+//  
+//  // using C++98 syntax (for older compilers):
+//  for (JsonObject::iterator it=root.begin(); it!=root.end(); ++it) {
+//      Serial.println(it->key);
+//      Serial.println(it->value.as<char*>());
+//  }
+
+
+  //key 항목 가져와서 for면 내용 처리하기
+  char json[] = "{'for':[{'infinity':1,'control_type':1},{'contents1':'11','contents2':'22'}]}";
+  DynamicJsonBuffer jsonBuffer;
+  JsonObject& root = jsonBuffer.parseObject(json);
+  for (auto kv : root) {
+      Serial.println(kv.key);
+      Serial.println(kv.value());
   }
 
 }
